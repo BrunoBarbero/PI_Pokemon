@@ -1,6 +1,6 @@
 const {Pokemon, Type} = require("../db"); 
 const axios = require('axios')
-const {Op} = require("sequelize")
+
     
        
 const getAllPokemons = async (name) => {
@@ -16,11 +16,16 @@ const getAllPokemons = async (name) => {
         } 
     });
 
-    const apiPokemonsData = ( //devuelve datos no utiles
-        await axios.get("https://pokeapi.co/api/v2/pokemon")).data
-    const apiPokemons = apiPokemonsData.results  
+    const apiPokemonsData = (await axios.get("https://pokeapi.co/api/v2/pokemon")).data
+    const apiPokemons = apiPokemonsData.results
+    console.log(apiPokemons);
 
-    return [...dbPokemons, ...apiPokemons]
+    const pokemonsUrl = await apiPokemons.map(obj => {
+        return (obj.url)    
+    });
+    console.log(pokemonsUrl);
+    
+    return [...dbPokemons, ...pokemonsUrl]
     }
      
 
@@ -44,7 +49,7 @@ const getPokemonById = async (id, source) =>{
 
     if (source === "api") {
        const pokemonData = (await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)).data
-       
+       console.log(pokemonData);
        const typesmapped = pokemonData.types.map(obj => obj.type.name)
 
        const pokemon = {

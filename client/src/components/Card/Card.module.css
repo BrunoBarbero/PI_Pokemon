@@ -1,0 +1,15 @@
+.container{
+    border-radius: 15%;
+    border: 1px solid black;
+    height: 20rem;
+    text-align: center;
+    font-size: 1,5rem;
+    background-color:darkgrey ;
+    margin-top: 1rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+}
+.container:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}

@@ -40,7 +40,7 @@ const postPokemonHandler = async (req, res) =>{
     const { name, image, healt, damage, defense, speed, types } = req.body;
     try { 
         const newPokemon = await createPokemon(name, image, healt, damage, defense, speed, types)
-        res.status(201).json(newPokemon)
+        res.status(201).send("Pokemon creado exitosamente")
 
     } catch (error) {
         res.status(400).json({error: error.message})

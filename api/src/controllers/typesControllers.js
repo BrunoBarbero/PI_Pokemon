@@ -10,11 +10,10 @@ const getAllTypes = async () =>{
             await axios.get("https://pokeapi.co/api/v2/type")).data
         const apiTypes = apiTypesData.results //devuelve los datos utiles filtrados
         
-        dbTypes = await apiTypes.forEach(obj =>{
-            Type.create({name : obj.name})
-            
-        });
         
+        dbTypes = await apiTypes.forEach(obj =>{
+            Type.create({name : obj.name})   
+        });
         return dbTypes 
     }
     
